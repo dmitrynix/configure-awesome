@@ -36,12 +36,18 @@ end
 
 -- {{{Autorun programs
 autorunApps = {
-  "setxkbmap us -variant mac",
+  "setxkbmap us -variant mac"
+}
+
+startupApps = {
   "/Users/dmitry/.dropbox-dist/dropboxd start"
 }
 
 for app = 1, #autorunApps do
   awful.util.spawn(autorunApps[app])
+end
+for app = 1, #startupApps do
+  utility.run_once(startupApps[app])
 end
 --}}}
 
