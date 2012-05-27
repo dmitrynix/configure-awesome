@@ -34,6 +34,17 @@ do
 end
 -- }}}
 
+-- {{{Autorun programs
+autorunApps = {
+  "setxkbmap us -variant mac",
+  "/Users/dmitry/.dropbox-dist/dropboxd start"
+}
+
+for app = 1, #autorunApps do
+  awful.util.spawn(autorunApps[app])
+end
+--}}}
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
