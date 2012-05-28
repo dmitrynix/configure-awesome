@@ -64,8 +64,7 @@ startupApps = {
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-layouts =
-{
+layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -259,18 +258,18 @@ globalkeys = awful.util.table.join(
             end
         end),
     -- Volume
-   awful.key({ }, "XF86AudioRaiseVolume", function ()
-       awful.util.spawn("amixer set Master 2%+")
-       vicious.force({ volumewidget })
-     end),
-   awful.key({ }, "XF86AudioLowerVolume", function ()
-       awful.util.spawn("amixer set Master 2%-")
-       vicious.force({ volumewidget })
-     end),
-   awful.key({ }, "XF86AudioMute", function ()
-       awful.util.spawn("amixer sset Master toggle")
-       vicious.force({ volumewidget })
-     end),
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+      awful.util.spawn("amixer set Master 2%+")
+      vicious.force({ volumewidget })
+    end),
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+      awful.util.spawn("amixer set Master 2%-")
+      vicious.force({ volumewidget })
+    end),
+    awful.key({ }, "XF86AudioMute", function ()
+      awful.util.spawn("amixer sset Master toggle")
+      vicious.force({ volumewidget })
+    end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
