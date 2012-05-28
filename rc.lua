@@ -122,7 +122,7 @@ volumewidget = widget({ type = "textbox"})
 vicious.register(volumewidget, vicious.widgets.volume,
 function(widget, args)
   return args[1] .. '% ' .. args[2]
-end, 2, "Master")
+end, 60, "Master")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
@@ -256,11 +256,17 @@ globalkeys = awful.util.table.join(
         end),
     -- Volume
    awful.key({ }, "XF86AudioRaiseVolume", function ()
-       awful.util.spawn("amixer set Master 2%+") end),
+       awful.util.spawn("amixer set Master 2%+")
+       vicious.force({ volumewidget })
+     end),
    awful.key({ }, "XF86AudioLowerVolume", function ()
-       awful.util.spawn("amixer set Master 2%-") end),
+       awful.util.spawn("amixer set Master 2%-")
+       vicious.force({ volumewidget })
+     end),
    awful.key({ }, "XF86AudioMute", function ()
-       awful.util.spawn("amixer sset Master toggle") end),
+       awful.util.spawn("amixer sset Master toggle")
+       vicious.force({ volumewidget })
+     end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
