@@ -58,6 +58,7 @@ end
 beautiful.init("/home/dmitry/.config/awesome/themes/dust/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
+home = os.getenv("HOME")
 terminal = "terminator"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -x " .. editor
