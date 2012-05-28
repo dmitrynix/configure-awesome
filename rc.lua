@@ -35,23 +35,6 @@ do
 end
 -- }}}
 
--- {{{Autorun programs
-autorunApps = {
-  "setxkbmap us -variant mac"
-}
-
-startupApps = {
-  "/Users/dmitry/.dropbox-dist/dropboxd start"
-}
-
-for app = 1, #autorunApps do
-  awful.util.spawn(autorunApps[app])
-end
-for app = 1, #startupApps do
-  utility.run_once(startupApps[app])
-end
---}}}
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -62,6 +45,16 @@ home = os.getenv("HOME")
 terminal = "terminator"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -x " .. editor
+
+-- Autorun apps (used every read)
+autorunApps = {
+  "setxkbmap us -variant mac"
+}
+
+-- Startup apps (read only on first run)
+startupApps = {
+  home .. "/.dropbox-dist/dropboxd start"
+}
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -87,6 +80,16 @@ layouts =
     awful.layout.suit.magnifier
 }
 -- }}}
+
+-- {{{ Autorun and startup apps
+for app = 1, #autorunApps do
+  awful.util.spawn(autorunApps[app])
+end
+
+for app = 1, #startupApps do
+  utility.run_once(startupApps[app])
+end
+--}}}
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
