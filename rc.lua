@@ -6,6 +6,7 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
+require("vicious")
 require("revelation")
 require("utility")
 
@@ -115,6 +116,13 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Wibox
+
+volumewidget = widget({ type = "textbox"})
+vicious.register(volumewidget, vicious.widgets.volume,
+function(widget, args)
+  return args[1] .. '% ' .. args[2]
+end, 2, "Master")
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
@@ -198,6 +206,7 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
+        volumewidget,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }

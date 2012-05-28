@@ -1,3 +1,4 @@
 #!/bin/bash
 
 git clone git://github.com/bioe007/awesome-revelation.git revelation
+git clone http://git.sysphere.org/vicious
