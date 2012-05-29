@@ -271,6 +271,17 @@ globalkeys = awful.util.table.join(
       vicious.force({ volumewidget })
     end),
 
+    -- Music
+    awful.key({ }, "XF86AudioNext", function()
+      awful.util.spawn("mpc next")
+    end),
+    awful.key({ }, "XF86AudioPrev", function()
+      awful.util.spawn("mpc prev")
+    end),
+    awful.key({ }, "XF86AudioPlay", function()
+      awful.util.spawn("mpc toggle")
+    end),
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
