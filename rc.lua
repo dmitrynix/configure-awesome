@@ -257,6 +257,7 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
         end),
+
     -- Volume
     awful.key({ }, "XF86AudioRaiseVolume", function ()
       awful.util.spawn("amixer set Master 2%+")
