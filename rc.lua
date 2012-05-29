@@ -282,6 +282,11 @@ globalkeys = awful.util.table.join(
       awful.util.spawn("mpc toggle")
     end),
 
+    -- Screenshots
+    awful.key({ modkey, "Shift" }, "s", function()
+      awful.util.spawn("scrot '" .. home .. "/Pictures/Screenshot %Y-%m-%d at %H.%M.%S_$wx$h.png'")
+    end),
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
