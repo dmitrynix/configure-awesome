@@ -57,12 +57,12 @@ startupApps = {
   home .. "/.config/conky/startup"
 }
 
--- Default modkey.
+-- Default modkey (aka command).
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+command = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
@@ -141,9 +141,9 @@ mylayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
-                    awful.button({ modkey }, 1, awful.client.movetotag),
+                    awful.button({ command }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
+                    awful.button({ command }, 3, awful.client.toggletag),
                     awful.button({ }, 4, awful.tag.viewnext),
                     awful.button({ }, 5, awful.tag.viewprev)
                     )
@@ -228,30 +228,30 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ modkey,           }, "e",      revelation),
+    awful.key({ command,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ command,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ command,           }, "Escape", awful.tag.history.restore),
+    awful.key({ command,           }, "e",      revelation),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ command,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    awful.key({ command,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    awful.key({ command,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ command, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ command, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ command, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    awful.key({ command, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ command,           }, "u", awful.client.urgent.jumpto),
+    awful.key({ command,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -285,30 +285,30 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Screenshots
-    awful.key({ modkey, "Shift" }, "s", function()
+    awful.key({ command, "Shift" }, "s", function()
       awful.util.spawn("scrot '" .. home .. "/Pictures/Screenshot %Y-%m-%d at %H.%M.%S_$wx$h.png'")
     end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ command,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ command, "Control" }, "r", awesome.restart),
+    awful.key({ command, "Shift"   }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    --awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    --awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ command,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
+    --awful.key({ command,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    --awful.key({ command, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
+    awful.key({ command, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ command, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
+    awful.key({ command, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+    awful.key({ command,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ command, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "h", awful.client.restore),
+    awful.key({ command, "Control" }, "h", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ command },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
+    awful.key({ command }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
@@ -318,20 +318,20 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey            }, "q",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "h",
+    awful.key({ command,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ command            }, "q",      function (c) c:kill()                         end),
+    awful.key({ command, "Control" }, "space",  awful.client.floating.toggle                     ),
+    awful.key({ command, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ command,           }, "o",      awful.client.movetoscreen                        ),
+    awful.key({ command, "Shift"   }, "r",      function (c) c:redraw()                       end),
+    awful.key({ command,           }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ command,           }, "h",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end),
-    awful.key({ modkey,           }, "m",
+    awful.key({ command,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
@@ -349,27 +349,27 @@ end
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
+        awful.key({ command }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ command, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ command, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ command, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
@@ -379,8 +379,8 @@ end
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+    awful.button({ command }, 1, awful.mouse.client.move),
+    awful.button({ command }, 3, awful.mouse.client.resize))
 
 -- Set keys
 root.keys(globalkeys)
