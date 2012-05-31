@@ -112,7 +112,7 @@ mymainmenu = awful.menu({ items =
      { 'PcManFM', 'pcmanfm' },
      { 'HandBrake', 'ghb' },
      { 'Skype', 'skype' },
-     { 'VirtualBox', 'Virtualbox' },
+     { 'VirtualBox', 'virtualbox' },
      { 'x-terminal-emulator', 'terminator' },
      { 'restart', awesome.restart },
      { 'quit', awesome.quit }
