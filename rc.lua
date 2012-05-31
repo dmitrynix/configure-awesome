@@ -63,6 +63,9 @@ startupApps = {
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 command = "Mod4"
+shift   = "Shift"
+control = "Control"
+
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
@@ -228,36 +231,32 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ command,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ command,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ command,           }, "Escape", awful.tag.history.restore),
-    awful.key({ command,           }, "e",      revelation),
-
-    awful.key({ command,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
-        end),
-    awful.key({ command,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
-        end),
-    awful.key({ command,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    awful.key({ command,         }, "Left",   awful.tag.viewprev       ),
+    awful.key({ command,         }, "Right",  awful.tag.viewnext       ),
+    awful.key({ command,         }, "Escape", awful.tag.history.restore),
+    awful.key({ command,         }, "e",      revelation               ),
+    awful.key({ command,         }, "j", function ()
+      awful.client.focus.byidx( 1)
+      if client.focus then client.focus:raise() end
+    end),
+    awful.key({ command,         }, "k", function ()
+      awful.client.focus.byidx(-1)
+      if client.focus then client.focus:raise() end
+    end),
+    awful.key({ command,         }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
-    awful.key({ command, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ command, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ command, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ command, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ command,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ command,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end),
+    awful.key({ command, shift   }, "j", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ command, shift   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ command, control }, "j", function () awful.screen.focus_relative( 1) end),
+    awful.key({ command, control }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ command,         }, "u", awful.client.urgent.jumpto),
+    awful.key({ command,         }, "Tab", function ()
+      awful.client.focus.history.previous()
+      if client.focus then
+        client.focus:raise()
+      end
+    end),
 
     -- Volume
     awful.key({ }, "XF86AudioRaiseVolume", function ()
@@ -285,57 +284,55 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Screenshots
-    awful.key({ command, "Shift" }, "s", function()
+    awful.key({ command, shift }, "s", function()
       awful.util.spawn("scrot '" .. home .. "/Pictures/Screenshot %Y-%m-%d at %H.%M.%S_$wx$h.png'")
     end),
 
     -- Standard program
-    awful.key({ command,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ command, "Control" }, "r", awesome.restart),
-    awful.key({ command, "Shift"   }, "q", awesome.quit),
+    awful.key({ command,         }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ command, control }, "r", awesome.restart),
+    awful.key({ command, shift   }, "q", awesome.quit),
 
-    awful.key({ command,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    --awful.key({ command,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    --awful.key({ command, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ command, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ command, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ command, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ command,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ command, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ command,         }, "l",     function () awful.tag.incmwfact( 0.05)    end),
+    --awful.key({ command,         }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    --awful.key({ command, shift   }, "h",     function () awful.tag.incnmaster( 1)      end),
+    awful.key({ command, shift   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ command, control }, "h",     function () awful.tag.incncol( 1)         end),
+    awful.key({ command, control }, "l",     function () awful.tag.incncol(-1)         end),
+    awful.key({ command,         }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ command, shift   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ command, "Control" }, "h", awful.client.restore),
+    awful.key({ command, control }, "h", awful.client.restore),
 
     -- Prompt
-    awful.key({ command },            "r",     function () mypromptbox[mouse.screen]:run() end),
-
-    awful.key({ command }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end)
+    awful.key({ command }, "r", function ()
+      mypromptbox[mouse.screen]:run()
+    end),
+    awful.key({ command }, "x", function ()
+      awful.prompt.run({ prompt = "Run Lua code: " },
+      mypromptbox[mouse.screen].widget,
+      awful.util.eval, nil,
+      awful.util.getdir("cache") .. "/history_eval")
+    end)
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ command,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ command            }, "q",      function (c) c:kill()                         end),
-    awful.key({ command, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ command, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ command,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ command, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ command,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ command,           }, "h",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
-    awful.key({ command,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
-        end)
+    awful.key({ command          }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ command          }, "q",      function (c) c:kill()                         end),
+    awful.key({ command, control }, "space",  awful.client.floating.toggle                     ),
+    awful.key({ command, control }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ command          }, "o",      awful.client.movetoscreen                        ),
+    awful.key({ command, shift   }, "r",      function (c) c:redraw()                       end),
+    awful.key({ command          }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ command          }, "h", function (c)
+        -- The client currently has the input focus, so it cannot be
+        -- minimized, since minimized clients can't have the focus.
+        c.minimized = true
+    end),
+    awful.key({ command }, "m", function (c)
+      c.maximized_horizontal = not c.maximized_horizontal
+      c.maximized_vertical   = not c.maximized_vertical
+    end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -356,20 +353,20 @@ for i = 1, keynumber do
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ command, "Control" }, "#" .. i + 9,
+        awful.key({ command, control }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ command, "Shift" }, "#" .. i + 9,
+        awful.key({ command, shift }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ command, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ command, control, shift }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
