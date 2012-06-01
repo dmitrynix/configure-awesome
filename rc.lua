@@ -65,7 +65,7 @@ startupApps = {
 command = "Mod4"
 shift   = "Shift"
 control = "Control"
-
+option  = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
