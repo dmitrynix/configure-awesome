@@ -233,7 +233,7 @@ globalkeys = awful.util.table.join(
   awful.key({ command,         }, "Left",   awful.tag.viewprev       ),
   awful.key({ command,         }, "Right",  awful.tag.viewnext       ),
   awful.key({ command,         }, "Escape", awful.tag.history.restore),
-  awful.key({ command,         }, "e",      revelation               ),
+  awful.key({                  }, "XF86LaunchA", revelation          ),
   awful.key({ command,         }, "j", function ()
     awful.client.focus.byidx( 1)
     if client.focus then client.focus:raise() end
