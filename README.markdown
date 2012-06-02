@@ -8,5 +8,7 @@ Configure with `rc.lua`:
 
 # Keys
 
-* *modkey + shift + q*: close;
-* *modkey + shift + r*: reload/restart;
+* command + shift + q: close awesome;
+* command + shift + r: reload/restart;
+* command + Tab      : cycle between opened windows
+* F3                 : Exposé/Revelation
