@@ -8,6 +8,8 @@ Configure with `rc.lua`:
 
 # Keys
 
+Note: I'm using apple keyboard. Command is my modkey.
+
 * command + shift + q: close awesome;
 * command + shift + r: reload/restart;
 * command + Tab      : cycle between opened windows
