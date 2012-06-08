@@ -12,3 +12,7 @@ Configure with `rc.lua`:
 * command + shift + r: reload/restart;
 * command + Tab      : cycle between opened windows
 * F3                 : Exposé/Revelation
+
+# TODO
+
+* Dashboard like *old* Mac OS X.
