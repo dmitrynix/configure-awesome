@@ -53,8 +53,7 @@ autorunApps = {
 
 -- Startup apps (read only on first run)
 startupApps = {
-  home .. "/.dropbox-dist/dropboxd start",
-  home .. "/.config/conky/startup"
+  home .. "/.dropbox-dist/dropboxd start"
 }
 
 -- Default modkey (aka command).
